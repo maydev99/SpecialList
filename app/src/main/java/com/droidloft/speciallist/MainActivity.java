@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<String>myTime;
     ArrayList<String>myText;
-    //ArrayList<String>myName;
+    ArrayList<String>myName;
     String myDate;
 
     @Override
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         addButton = (Button)findViewById(R.id.addButton);
         myTime = new ArrayList<>();
         myText = new ArrayList<>();
-        //myName = new ArrayList<>();
+        myName = new ArrayList<>();
 
 
        // CustomAdapter adapter = new CustomAdapter(MainActivity.this, myTime, myText);
@@ -42,21 +43,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String entryText = entryEditText.getText().toString();
-                myText.add(entryText);
-                getTime();
-                myTime.add(myDate);
-               // myName.add("M.May");
-                entryEditText.setText("");
+                if(entryText.equals("")) {
+                    //Do nothing
+                } else {
+                    myText.add(entryText);
+                    getTime();
+                    myTime.add(myDate);
+                    myName.add("M.May");
+                    entryEditText.setText("");
 
-                CustomAdapter adapter = new CustomAdapter(MainActivity.this, myTime, myText);
-                listView = (ListView)findViewById(R.id.listView);
-                listView.setAdapter(adapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    CustomAdapter adapter = new CustomAdapter(MainActivity.this, myName, myTime, myText);
+                    listView = (ListView)findViewById(R.id.listView);
+                    listView.setAdapter(adapter);
+                }
 
-                    }
-                });
+
             }
         });
 
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getTime() {
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
         myDate = sdf.format(cal.getTime());
     }
 }

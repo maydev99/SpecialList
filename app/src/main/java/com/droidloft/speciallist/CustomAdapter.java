@@ -19,12 +19,14 @@ public class CustomAdapter extends BaseAdapter {
     Context mContext;
     private  final ArrayList<String> myTime;
     private final ArrayList<String> myText;
+    private final ArrayList<String> myName;
 
 
-    public CustomAdapter(Context mContext, ArrayList<String> myTime, ArrayList<String> myText) {
+    public CustomAdapter(Context mContext, ArrayList<String> myName, ArrayList<String> myTime, ArrayList<String> myText) {
         this.mContext = mContext;
         this.myTime = myTime;
         this.myText = myText;
+        this.myName = myName;
 
     }
 
@@ -51,9 +53,11 @@ public class CustomAdapter extends BaseAdapter {
 
         TextView theText = (TextView) row.findViewById(R.id.my_text);
         TextView theTime = (TextView) row.findViewById(R.id.my_time);
+        TextView theName = (TextView) row.findViewById(R.id.my_name);
 
         theText.setText(myText.get(position));
         theTime.setText(myTime.get(position));
+        theName.setText(myName.get(position));
 
 
         return row;
