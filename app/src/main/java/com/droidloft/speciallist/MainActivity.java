@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<String>myTime;
     ArrayList<String>myText;
+    //ArrayList<String>myName;
     String myDate;
 
     @Override
@@ -29,16 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         entryEditText = (EditText)findViewById(R.id.entryEditText);
         addButton = (Button)findViewById(R.id.addButton);
+        myTime = new ArrayList<>();
+        myText = new ArrayList<>();
+        //myName = new ArrayList<>();
 
-        CustomAdapter adapter = new CustomAdapter(MainActivity.this, myTime, myText);
-        listView = (ListView)findViewById(R.id.listView);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-            }
-        });
+       // CustomAdapter adapter = new CustomAdapter(MainActivity.this, myTime, myText);
+
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 myText.add(entryText);
                 getTime();
                 myTime.add(myDate);
+               // myName.add("M.May");
+                entryEditText.setText("");
 
                 CustomAdapter adapter = new CustomAdapter(MainActivity.this, myTime, myText);
                 listView = (ListView)findViewById(R.id.listView);
